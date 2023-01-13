@@ -3,6 +3,23 @@ import requests
 import csv
 from flask import Flask, render_template
 from flask import request
+import time
+import json
+import requests
+import threading
+
+
+def save_json_to_file(json_obj, filepath):
+    with open(filepath, "w") as f:
+        json.dump(json_obj, f)
+
+
+def my_function():
+    while True:
+        r = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json()
+        save_json_to_file(r, "/home/19roberl/mysite/data.json")
+        print("Response: 200")
+        time.sleep(60)
 
 
 app = Flask(__name__)
@@ -123,6 +140,9 @@ def airport_info():
         alt_valid=alt_valid,
     )
 
+
+timer = threading.Timer(interval=20, function=my_function)
+timer.start()
 
 if __name__ == "__main__":
     app.run()
