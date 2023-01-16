@@ -17,7 +17,7 @@ def save_json_to_file(json_obj, filepath):
 def my_function():
     while True:
         r = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json()
-        save_json_to_file(r, "/home/19roberl/mysite/data.json")
+        save_json_to_file(r, "D:\code for IT\GUI - Copy\data.json")
         print("Response: 200")
         time.sleep(60)
 
@@ -126,7 +126,7 @@ def home():
 
 @app.route("/airport", methods=["GET", "POST"])
 def airport_info():
-    airport_name = request.form.get("airport")
+    airport_name = request.args.get("airport")
     pilots, selected_pilot, route, valid_route, name, alt_valid = get_airport_data(
         airport_name
     )
