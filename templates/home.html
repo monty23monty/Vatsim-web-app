@@ -1,0 +1,10 @@
+<form id="airportForm" method="GET">
+  <input type="text" id="airportCode" name="airport_code" required>
+  <input type="submit" value="Submit">
+</form>
+<script type="text/javascript">
+  document.getElementById('airportForm').addEventListener('submit', function(e) {
+      var airportCode = document.getElementById('airportCode').value;
+      this.action = '/airport/' + encodeURIComponent(airportCode);
+  });
+  </script>

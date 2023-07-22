@@ -1,0 +1,5 @@
+branch-defaults:
+  main:
+    environment: Getting-started-app-env
+global:
+  profile: eb-cli
